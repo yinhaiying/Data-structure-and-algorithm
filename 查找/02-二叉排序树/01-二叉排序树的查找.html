@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉排序树的查找</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+<script>
+
+
+//创建一个二叉搜索树
+function binarySearchTree(){
+  let Node = function(value){
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+  //声明一个变量，控制此数据结构(二叉树)的第一个节点(类似于链表中的头指针)
+  let root = null;
+
+  //二叉排序树的插入操作
+
+  this.insert = function(key){
+    //插入的肯定是一个节点，不仅仅只是一个value值，因此需要Node构造函数创建结点
+    var newNode = new Node(key);
+
+    if(root === null){
+      root = newNode;
+    }else{
+
+      insertNode(root,newNode);
+
+    }
+  }
+
+  let insertNode =function(node,newNode){
+    //要插入的结点的值小于当前结点的值，说明应该插入它的左边
+    if(newNode.value < node.value){
+    //  如果当前结点没有左子树
+      if(node.left === null){
+        node.left = newNode;
+      }else{
+        insertNode(node.left,newNode);
+      }
+    }
+    if(newNode.value > node.value){
+      if(node.right === null){
+        node.right = newNode;
+      }else{
+        insertNode(node.right,newNode);
+      }
+    }
+  }
+
+
+
+
+
+
+  //二叉搜索树的查找
+  this.search = function(key){
+    return searchNode(root,key);
+  };
+
+  let searchNode = function(node,key){
+    if(node === null){
+      return false;
+    }
+
+    if(key < node.value){
+      return searchNode(node.left,key)
+    }else if(key > node.value){
+      return searchNode(node.right,key);
+    }else{
+      return true;
+    }
+  }
+}
+
+var tree = new binarySearchTree();
+tree.insert(11);
+console.log(tree)
+</script>
+</body>
+</html>

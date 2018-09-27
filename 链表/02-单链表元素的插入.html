@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单链表的查找</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+<script>
+  function LinkList(){
+    var Node = function(element){
+      this.element = element;
+      this.next = null;
+    }
+    var length = 0;
+    var head = null;
+
+    //在任意位置插入元素
+    this.insert = function(i,element){
+      var node = new Node(element);
+      var p = head;//用来遍历的指针
+      var previous ;
+      var index = 0;
+      if(i >=0 && i <= length){
+        //在头部插入
+        if(i === 0){
+          node.next = p;//这里的head指针就表示第一个元素.head相当于第一个元素.next
+          head = node;
+        }else{
+          while(index < i){
+            previous = p;
+            p = p.next;
+            index++;
+          }
+          node.next = p;
+          previous.next = node;
+        }
+        length++;
+      }else{
+        return false;
+      }
+    }
+
+  }
+</script>
+</body>
+</html>

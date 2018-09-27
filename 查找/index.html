@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>花色</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+<script>
+  function fn(n,m){
+    var i = m;
+    var count;
+    while(i <= n){
+      if(n%i === 0){
+        count++;
+        i++;
+      }
+    }
+
+    return count;
+  }
+  var n = 30;
+  var m = 15;
+  console.log(fn(n,m))
+</script>
+</body>
+</html>

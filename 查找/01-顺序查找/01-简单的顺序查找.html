@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单的顺序查找</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+</head>
+<body>
+<script>
+
+  function sequentialSearch(arr,item){
+    //从头到尾进行比较
+    for(var i = 0;i < arr.length;i++){
+      if(arr[i] === item){
+        return i;
+      }
+    }
+
+    //没有查找到则返回-1
+    return -1;
+  }
+
+
+</script>
+</body>
+</html>
