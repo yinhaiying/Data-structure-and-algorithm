@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a77d4362-6e3b-4ffc-895d-bce79f5c8997" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/查找/01-顺序查找/01-简单的顺序查找.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/查找/01-顺序查找/02-二分查找.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/查找/01-顺序查找/03-二分查找的优化-插值查找.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/查找/02-二叉排序树/01-二叉排序树的查找.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/查找/02-二叉排序树/02-二叉树的插入.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/查找/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/查找/index2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/链表/01-链表结点的定义.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/链表/02-单链表元素的插入.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/链表/02单链表元素的添加.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/链表/链表.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Array/01-Array.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -91,20 +80,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="02-二叉树的插入.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="02-二叉树的插入.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/查找/02-二叉排序树/02-二叉树的插入.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="53" column="2" lean-forward="true" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
+            <state relative-caret-position="740">
+              <caret line="52" column="3" lean-forward="true" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="01-链表结点的定义.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/链表/01-链表结点的定义.html">
+      <file leaf-file-name="01-Array.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Array/01-Array.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="860">
-              <caret line="43" column="7" lean-forward="true" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
+            <state relative-caret-position="280">
+              <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -148,6 +137,7 @@
         <option value="$PROJECT_DIR$/查找/02-二叉排序树/01-二叉排序树的查找.html" />
         <option value="$PROJECT_DIR$/查找/02-二叉排序树/二叉树的插入.html" />
         <option value="$PROJECT_DIR$/查找/02-二叉排序树/02-二叉树的插入.html" />
+        <option value="$PROJECT_DIR$/Array/01-Array.html" />
       </list>
     </option>
   </component>
@@ -185,13 +175,7 @@
             <path>
               <item name="数据结构和算法" type="b2602c69:ProjectViewProjectNode" />
               <item name="数据结构和算法" type="462c0819:PsiDirectoryNode" />
-              <item name="查找" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="数据结构和算法" type="b2602c69:ProjectViewProjectNode" />
-              <item name="数据结构和算法" type="462c0819:PsiDirectoryNode" />
-              <item name="查找" type="462c0819:PsiDirectoryNode" />
-              <item name="02-二叉排序树" type="462c0819:PsiDirectoryNode" />
+              <item name="Array" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -202,7 +186,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../前端面试/self-interview" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
     <property name="node.js.selected.package.prettier" value="" />
@@ -232,12 +216,12 @@
       <option name="presentableId" value="Default" />
       <updated>1537626916395</updated>
       <workItem from="1537626917873" duration="8485000" />
-      <workItem from="1537926807047" duration="12241000" />
+      <workItem from="1537926807047" duration="21676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20726000" />
+    <option name="totallyTimeSpent" value="30161000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -383,8 +367,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/查找/02-二叉排序树/02-二叉树的插入.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="53" column="2" lean-forward="true" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
+        <state relative-caret-position="740">
+          <caret line="52" column="3" lean-forward="true" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Array/01-Array.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
         </state>
       </provider>
     </entry>
