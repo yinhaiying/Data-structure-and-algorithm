@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>链表的删除操作</title>
+</head>
+<body>
+				<script type="text/javascript">
+
+		function LinkedList(){
+			// 结点类
+			var Node = function(element,next){
+              this.element = element !==undefined?element:null;
+              this.next = next!==undefined?next:null;
+			}
+
+			// 需要一个Node类型的变量head用于存储链表头
+			// var head = null;使用虚拟头结点dummyHead
+			var dummyHead = new Node(null,null)
+			var size = 0;  //size用来记录链表中的元素个数
+
+			// 获取链表中元素个数
+			this.getSize = function(){
+				return size;
+			}
+			// 链表是否为空
+			this.isEmpty = function(){
+				return size === 0;
+			}
+			
+			// 在链表的index位置添加元素
+			this.add = function(index,element){
+				if(index < 0 ||index > size){
+					throw new Error();
+				}
+					var node = new Node(element);
+				    var i = 0;
+					// 找到待插入的结点的前一个结点，通过prev进行移动
+                  var prev = dummyHead; //dummyHead是index为0的前一个结点
+                  while(i < index){
+                    prev = prev.next;
+                    i++;
+                  }
+                  node.next = prev.next;
+                  prev.next = node;
+                  size++;
+				
+			}
+			// 在链表头添加新的元素
+			this.addFirst = function(element){
+				this.add(0,element)
+			}
+			//在链表末尾插入元素
+			this.addLst = function(element){
+				this.add(size,element)
+			} 
+
+			// 获取链表第index位置的元素，只要是用于练习
+			this.getElement = function(index){
+				var prev = dummyHead.next;
+				var i = 0;
+				while(i < index){
+					prev = prev.next;
+				}
+				return prev.element;
+			}
+			// 获取链表的第一个元素
+			this.getFirstElement = function(){
+				return this.getElement(0)
+			}
+			// 获取链表最后一个元素
+			this.getLastElement = function(){
+				return this.get(size-1)
+			}
+
+			// 修改链表中第index位置的元素为e
+			this.set = function(index,element){
+				var prev = dummyHead.next;
+				var i = 0;
+				while(i < index){
+					prev = prev.next;
+				}
+				prev.element = element;
+			}
+
+			// 查找链表中是否有元素element
+			this.find = function(element){
+				var prev = dummy.next;
+				while(prev !== null){
+					if(pre.element === element){
+						return true;
+					}
+					prev = prev.next;
+				}
+				return false;
+				
+			}
+			// 链表的删除操作
+			this.remove = function(index){
+				var prev = dummyHead;
+				var i = -1;
+				while(i < index -1){
+                   prev = prev.next;
+                   i++;
+				}
+				var delNode = prev.next; //将删除的结点进行返回.prev.next是要删除的结点
+				prev.next = delNode.next;
+				delNode.next = null;
+				size--;
+				return delNode.element;
+			}
+			// 从链表中删除第一个位置的元素
+			this.removeFirstNode = function(){
+				this.remove(0)
+			}
+			// 从链表中删除最后个位置的元素
+			this.removeLastNode = function(){
+				this.remove(size-1)
+			}
+			
+			this.toString = function(){
+				var res = '';
+				var prev = dummyHead.next;
+				while(prev.next !== null){
+					res += prev.element;
+					res +='->'
+					prev = prev.next;
+				}
+				res +='null';
+				return res;
+			}
+		}
+		var linkedList = new LinkedList();
+		for(var i = 0;i < 5;i++){
+			linkedList.addFirst(i);
+			console.log(linkedList.toString())
+		}
+		linkedList.add(2,888);
+		console.log(linkedList.toString())
+        linkedList.remove(2);
+		console.log(linkedList.toString())
+		linkedList.removeFirstNode();
+		console.log(linkedList.toString())
+		linkedList.removeLastNode();
+		console.log(linkedList.toString())
+
+	</script>
+</body>
+</html>
