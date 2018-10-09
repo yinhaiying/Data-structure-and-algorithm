@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二分搜索树的遍历</title>
+</head>
+<body>
+		<script type="text/javascript">
+
+		function BinarySearchTree(){
+			// 创建内部结点类
+			var Node = function(element){
+				this.element = element;
+				this.left = null;
+				this.right = null;
+			}
+			// 静态变量
+			var root = null;
+			var size = 0;
+
+			this.size = function(){
+				return size;
+			}
+			this.isEmpty = function(){
+				return size === 0;
+			}
+			this.add = function(element){
+              var node = new Node(element);
+              if(root === null){
+              	root = node;
+              	size++;
+              }else{
+              	// 辅助函数
+              	this._add(root,node)
+              }
+
+			}
+			// 向以node为根的结点插入元素E，递归算法。在插入的过程中根节点是不断变化的。
+			this._add = function(node,newNode){
+				if(newNode.element < node.element ){
+                  	// 第一部分递归终止条件
+                  	if(node.left === null){
+                  		node.left = newNode;
+                  		size++;
+                  		return 
+                  	}else{
+                  	// 原问题转化为更小的问题
+                  		this._add(node.left,newNode);
+                  	}
+				}
+				if(newNode.element > node.element){
+					// 第一部分递归终止条件
+					if(node.right === null){
+						node.right = newNode;
+						size++;
+						return 
+					}else{
+                    // 原问题转化为更小的问题
+                       this._add(node.right,newNode);
+					}
+				}
+			}
+
+
+            // 在二叉树中搜索某个结点
+			this.contains = function(element){
+				return this._contains(root,element)
+			}
+			this._contains = function(node,element){
+				if(node === null){
+					return false;
+				}
+				if(node.element === element){
+					return true;
+				}else if(element < node.element){
+					this._contains(node.left,element)
+				}else if(element > node.element){
+					this._contains(node.right,element)
+				}
+				
+			}
+
+
+			// 前序遍历
+			this.preOrder = function(){
+				this._preOrder(root)
+			}
+			// 遍历也需要辅助函数，需要知道是对哪个二叉树进行的遍历
+			this._preOrder = function(node){
+				if(node === null){
+					return;
+				}else{
+					console.log(node.element);
+					this._preOrder(node.left);
+					this._preOrder(node.right);
+				}
+			}
+			// 中序遍历
+			this.inOrder = function(){
+				this._inOrder(root);
+			}
+			this._inOrder = function(node){
+				if(node === null){
+					return;
+				}else{
+					this._inOrder(node.left);
+					console.log(node.element);
+					this._inOrder(node.right);
+				}
+			}
+			// 后续遍历
+			this.postOrder = function(){
+				this._postOrder(root);
+			}
+			this._postOrder = function(node){
+				if(node === null){
+					return ;
+				}else{
+					this._postOrder(node.left);
+					this._postOrder(node.right);
+					console.log(node.element);
+				}
+			}
+		}
+
+		var bst = new BinarySearchTree();
+		var arr = [5,3,6,8,4,2];
+        for(var i = 0;i < arr.length;i++){
+        	bst.add(arr[i]);
+        }
+        bst.postOrder()
+
+
+
+
+
+	</script>
+</body>
+</html>

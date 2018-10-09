@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二分搜索树</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		function BinarySearchTree(){
+			// 创建内部结点类
+			var Node = function(element){
+				this.element = element;
+				this.left = null;
+				this.right = null;
+			}
+			// 静态变量
+			var root = null;
+			var size = 0;
+
+			this.size = function(){
+				return size;
+			}
+			this.isEmpty = function(){
+				return size === 0;
+			}
+			this.add = function(element){
+              var node = new Node(element);
+              if(root === null){
+              	root = node;
+              	size++;
+              }else{
+              	// 辅助函数
+              	this._add(root,element)
+              }
+
+			}
+			// 向以node为根的结点插入元素E，递归算法。在插入的过程中根节点是不断变化的。
+			this._add = function(node,newNode){
+				if(newNode.element < node.element ){
+                  	// 第一部分递归终止条件
+                  	if(node.left === null){
+                  		node.left = newNode;
+                  		size++;
+                  		return 
+                  	}else{
+                  	// 原问题转化为更小的问题
+                  		this._add(node.left,newNode);
+                  	}
+				}
+				if(newNode.element > node.element){
+					// 第一部分递归终止条件
+					if(node.right === null){
+						node.right = newNode;
+						size++;
+						return 
+					}else{
+                    // 原问题转化为更小的问题
+                       this._add(node.right,newNode);
+					}
+				}
+			}
+            // 在二叉树中搜索某个数
+			this.contains = function(element){
+				return this._contains(root,element)
+			}
+			this._contains = function(node,element){
+				if(node === null){
+					return false;
+				}
+				if(node.element === element){
+					return true;
+				}else if(element < node.element){
+					this._contains(node.left,element)
+				}else if(element > node.element){
+					this._contains(node.right,element)
+				}
+				
+			}
+		}
+
+	</script>
+</body>
+</html>
