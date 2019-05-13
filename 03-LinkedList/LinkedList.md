@@ -38,3 +38,51 @@
 8. isEmpty():如果链表不包含任何元素返回true
 9. size():返回链表包含的元素个数
 10. toString():由于链表使用了内部类，就需要重写继承自Javascript对象默认的toString方法，让其只输出元素的值。
+
+**使用链表始终牢记两点：**
+1. 链表无法直接找到某一个元素，必须从第一个元素开始查找。
+2. 链表操作一定涉及到指针
+
+#### append(element)
+向链表尾部添加一个节点。
+操作链表时，始终牢记刚刚上面的两点：
+1. 一定是从第一个元素开始查找。
+添加节点时，同样是从第一个元素开始。首先我们需要判断当前链表有没有第一个元素。
+如果没有，那么新添加的元素就是第一个元素。
+2. 链表操作一定设计到指针的变化。将新创建的添加到链表中，实际上就是讲最后一个元素的next指向新创建的元素。
+```
+    let newNode = new Node(element)
+    //1. 判断是否添加的是第一个节点
+    if(this.length == 0){
+        this.head = newNode;
+    }
+```
+如果新添加的元素不是链表中的第一个元素，那么我们需要找到链表中的最后一个元素，然后将其next指向新创建的元素。
+同样是牢记两点：
+1. 需要从第一个元素开始查找。查找结束的条件是元素的next指向null。
+2. 一定设计到指针的操作。通过指针的next来结束循环。
+```
+    let current = this.head; // this.head指向的是一个节点。因此这里current代表一个节点
+    while(current.next){
+        current = current.next;
+    }
+```
+链表中添加元素的完整代码如下：
+```
+LinkedList.prototype.append = function(element){
+    let newNode = new Node(element)
+    //1. 判断是否添加的是第一个节点
+    if(this.length == 0){
+        this.head = newNode;
+    }else{
+    //2.不是第一个节点。通过while循环找到最后一个节点。    
+        let current = this.head; // this.head指向的是一个节点。因此这里current代表一个节点
+        while(current.next){
+            current = current.next;
+        }
+        // 让最后节点的next指向新的节点
+        current.next = newNode;
+    }
+    this.length += 1;
+    }
+```
