@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>优先级队列</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+
+
+    function PriorityQueue(){
+
+        // 在类中重新创建了一个类，用来生成元素
+        function QueueElement(element,priority){
+            this.element = element;
+            this.priority = priority;
+        }
+
+      //属性
+      this.items = []
+      
+      //插入元素
+      PriorityQueue.prototype.enqueue= function (element,priority){
+          //1. 创建queueElement对象
+        let queueElement = new QueueElement(element,priority);
+         // 2. 判断队列是否为空
+         if(this.items.length == 0){
+             this.items.push(queueElement)
+         }else{
+             var added = false;
+             for(var i = 0;i < this.items.length;i++){
+                 if(queueElement.priority < this.items[i].priority){
+                     this.items.splice(i,0,queueElement);
+                     added = true;
+                     break;
+                 }
+             }
+             if(!added){
+                 this.items.push(queueElement)
+             }
+         }
+      }
+        PriorityQueue.prototype.dequeue = function(){
+            return this.items.shift()
+        }
+        PriorityQueue.prototype.front = function(){
+            return this.items[0]
+        }
+        PriorityQueue.prototype.isEmpty = function(){
+            return this.items.length == 0
+        }
+        PriorityQueue.prototype.size = function(){
+            return this.items.length
+        }
+        PriorityQueue.prototype.toString = function(){
+            let str = '';
+            for(let i = 0;i < this.items.length;i++){
+                str += this.items[i].element + ' '
+            }
+            return str
+        }
+    }
+
+    let priorityqueue = new PriorityQueue();
+    priorityqueue.enqueue('a',122)
+    priorityqueue.enqueue('b',111)
+    priorityqueue.enqueue('c',100)
+    priorityqueue.enqueue('d',19)
+    alert(priorityqueue.toString())
+    console.log(priorityqueue)
+
+
+
+
+
+
+</script>
+</html>
