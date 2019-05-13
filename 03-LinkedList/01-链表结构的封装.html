@@ -96,6 +96,19 @@
           }
           return current.element;
       }
+       //indexOf(element):返回元素在链表中的索引，如果链表中没有该元素则返回-1
+       LinkedList.prototype.indexOf = function(element){
+           let index = 0;
+           let current = this.head;
+           while(current.element != element){
+             index +=1;
+             current = current.next;
+             if(index >= this.length){
+                 return -1;
+             }
+           }
+           return index;
+       }
 
 
 
@@ -112,5 +125,6 @@
   linkedList.insert(3,'d')
   alert(linkedList.toString())
   console.log(linkedList.get(2))
+  console.log('元素c的索引是'+linkedList.indexOf('f'))
 </script>
 </html>

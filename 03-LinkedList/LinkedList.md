@@ -146,4 +146,4 @@ LinkedList.prototype.insert(position,element){
 
 ### 总结：
 1. 只要是涉及到位置position定义index变量
-2. 只要是涉及到添加元素的，定义current。
+2. 只要是涉及到添加元素的，定义current = this.head
