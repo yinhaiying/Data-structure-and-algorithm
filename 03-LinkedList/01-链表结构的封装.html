@@ -37,6 +37,25 @@
         }
         this.length += 1;
       }
+
+
+      //toString方法
+      LinkedList.prototype.toString = function(){
+          let current = this.head;
+          let str = ''
+          while(current){
+            str += current.element + '->';
+            current = current.next;
+          }
+          return str;
+      }
   }
+
+
+  let linkedList = new LinkedList();
+  linkedList.append('a');
+  linkedList.append('b');
+  linkedList.append('c');
+  alert(linkedList.toString())
 </script>
 </html>
