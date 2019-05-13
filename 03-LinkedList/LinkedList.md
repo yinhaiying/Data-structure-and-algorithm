@@ -97,7 +97,7 @@ LinkedList.prototype.insert(position,element){
 
     //2. 创建新的节点
     let newNode = new Node(element);
-    
+
     //3. 判断插入的元素是否是第一个
     if(position == 0){
         let current = this.head;// 保存原来的第一个
@@ -121,3 +121,29 @@ LinkedList.prototype.insert(position,element){
 }
 
 ```
+#### get(position)
+```
+      LinkedList.prototype.get = function(position){
+          //1. 边界条件的判断
+          if(position < 0 || position >= this.length){
+              return false;
+          }
+          //2. 获取指定position对应节点的内容
+          let index = 0;
+          let current = this.head;
+          while(index < position){
+            index += 1;
+            current = current.next;
+          }
+          return current.element;
+      }
+```
+
+
+
+
+
+
+### 总结：
+1. 只要是涉及到位置position定义index变量
+2. 只要是涉及到添加元素的，定义current。

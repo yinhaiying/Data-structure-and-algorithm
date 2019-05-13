@@ -51,7 +51,7 @@
       }
 
       //insert方法
-      LinkedList.prototype.insert(position,element){
+      LinkedList.prototype.insert = function(position,element){
           //1. 对position进行越界判断
           if(position < 0 || position > this.length){
               return false;
@@ -81,6 +81,22 @@
           return true;
       }
 
+      //get(position):获取对应位置的元素
+      LinkedList.prototype.get = function(position){
+          //1. 边界条件的判断
+          if(position < 0 || position >= this.length){
+              return false;
+          }
+          //2. 获取指定position对应节点的内容
+          let index = 0;
+          let current = this.head;
+          while(index < position){
+            index += 1;
+            current = current.next;
+          }
+          return current.element;
+      }
+
 
 
 
@@ -93,5 +109,8 @@
   linkedList.append('b');
   linkedList.append('c');
   alert(linkedList.toString())
+  linkedList.insert(3,'d')
+  alert(linkedList.toString())
+  console.log(linkedList.get(2))
 </script>
 </html>
