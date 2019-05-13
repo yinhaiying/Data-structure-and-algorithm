@@ -49,6 +49,42 @@
           }
           return str;
       }
+
+      //insert方法
+      LinkedList.prototype.insert(position,element){
+          //1. 对position进行越界判断
+          if(position < 0 || position > this.length){
+              return false;
+          }
+
+          //2. 创建新的节点
+          let newNode = new Node(element);
+          //3. 判断插入的元素是否是第一个
+          if(position == 0){
+              let current = this.head;// 保存原来的第一个
+              this.head = newNode;
+              newNode.next = current;
+          }else{
+              let index = 0;
+              let previous = null;//一开始head的前一个就是null
+              let current = this.head;
+              while(index++ < position){
+                  previous = current;
+                  //索引值每加一次1，current就指向下一个next
+                  current = current.next;
+              }
+              newNode.next = current;
+              previous.next = newNode;
+          }
+          //4. length+1
+          this.length += 1;
+          return true;
+      }
+
+
+
+
+
   }
 
 
