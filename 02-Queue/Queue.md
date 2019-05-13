@@ -26,3 +26,35 @@
 
 ### 使用数组实现队列的缺点：
 1. 进行删除时，删除队首元素以后，队列的其他元素都要往前移动。如果队列元素非常多，会造成效率低下。
+
+### 队列的实现
+```
+function Queue(){
+        // 属性
+        this.items = [];
+        // 方法
+        this.enqueue = function(ele){
+            this.items.push(ele)
+        }
+        Queue.prototype.dequeue = function(){
+            return this.items.shift()
+        }
+        Queue.prototype.front = function(){
+            return this.items[0]
+        }
+        Queue.prototype.isEmpty = function(){
+            return this.items.length == 0
+        }
+        Queue.prototype.size = function(){
+            return this.items.length
+        }
+        Queue.prototype.toString = function(){
+            let str = '';
+            for(let i = 0;i < this.items.length;i++){
+                str += this.items[i] + ' '
+            }
+            return str
+        }
+    }
+
+```

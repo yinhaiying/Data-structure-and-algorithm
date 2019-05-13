@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>击鼓传花</title>
+    <script src = "./queue.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+击鼓传花：
+班级中一群人玩一个游戏，所有学生围城一圈，从某位同学手里开始向旁边的同学传花。
+在某一时刻有人喊停，花在谁手里，谁就出来表演节目。
+
+修改游戏规则：
+几个小朋友一起玩一个游戏，围成一圈，开始数数，数到某个数字的人出局。
+最后剩下的这个人会获得胜利。请问最后剩下的是原来哪个位置的人。
+
+
+实现思路：使用队列来实现。
+1. 将所有人都添加到队列中去。
+2. 便利队列，如果不为指定的数，就将这个值从队首删除，添加到队尾中。如果是指定的数就直接删除即可。
+3. 当队列中元素的长度为1时，表示只剩下最后一个人，此时这个人就获得胜利。
+*/
+
+function passGame(nameList,num){
+  // 1. 创建一个队列
+  let queue = new Queue();
+  // 2. 将所有人依次加入队列
+  for(let i = 0;i < nameList.length;i++){
+      queue.enqueue(nameList[i])
+  }
+  // 3. 让所有人开始数数.不是指定数字的时候，重新加入到队列的末尾。
+  // 比如数字为5.那么从1到4的元素都应该删除后重新加到队尾
+
+
+  while(queue.size()>1){
+  //num之前数字的元素删除后重新放入队尾
+    for(var i = 0; i < num-1;i++){
+        let elm = queue.dequeue();// 删除
+        queue.enqueue(elm);// 添加到队尾
+    }
+    //num对应的人直接删除掉
+    queue.dequeue();
+  }
+
+  //4. 获取最终剩下的人
+  let endName = queue.front();
+  return nameList.indexOf(endName)
+}
+
+let nameList = ['a','b','c','d','e'];
+console.log(passGame(nameList,3))
+</script>
+</html>
