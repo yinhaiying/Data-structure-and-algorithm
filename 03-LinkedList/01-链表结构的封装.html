@@ -109,6 +109,19 @@
            }
            return index;
        }
+       //    update(position,element):修改元素某个位置的值
+       LinkedList.prototype.update = function(position,element){
+           if(position < -1 || position >= this.length){
+               return false;
+           }
+           let index = 0;
+           let current = this.head;
+           while(index < position){
+               index += 1;
+               current = current.next;
+           }
+           current.element = element;
+       }
 
 
 
@@ -122,9 +135,14 @@
   linkedList.append('b');
   linkedList.append('c');
   alert(linkedList.toString())
-  linkedList.insert(3,'d')
+//   linkedList.insert(3,'d')
+//   alert(linkedList.toString())
+//   console.log(linkedList.get(2))
+//   console.log('元素f的索引是'+linkedList.indexOf('f'))
+
+  console.log('.....update.......')
+  linkedList.update(2,'update');
   alert(linkedList.toString())
-  console.log(linkedList.get(2))
-  console.log('元素c的索引是'+linkedList.indexOf('f'))
+
 </script>
 </html>

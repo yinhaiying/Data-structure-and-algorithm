@@ -30,7 +30,7 @@
 3. get(position):获取对应位置的元素
 4. indexOf(element):返回元素在链表中的索引，如果列表中没有该元素则返回1
 改
-5. update(element):修改元素某个位置的值
+5. update(position,element):修改元素某个位置的值
 删
 6. removeAt(position):从列表特定位置删除一项
 7. remove(element):从列表中删除一项
