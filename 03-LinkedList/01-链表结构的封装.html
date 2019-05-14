@@ -166,13 +166,19 @@
                    current = current.next;
                }
                previous.next = current.next;
-               return current.element;
+               
            }
+           this.length -= 1;
+           return current.element;
        }
 
+       LinkedList.prototype.isEmpty = function(){
+           return this.length == 0;
+       }
 
-
-
+       linkedList.prototype.size = function(){
+           return this.length;
+       }
   }
 
 

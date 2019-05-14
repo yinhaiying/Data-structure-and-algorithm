@@ -201,6 +201,27 @@ LinkedList.prototype.insert(position,element){
 
 ```
 #### remove(element):从链表中移除某个元素
+```
+    LinkedList.prototype.remove = function(element){
+        let current = this.head;
+        let previous = null;
+        // 如果要移除的元素正好是第一项
+        if(current.element == element){
+            this.head = current.next;
+        }else{
+            while(current.element != element){
+                if(!current.next){
+                    return -1;
+                }
+                previous = current;
+                current = current.next;
+            }
+            previous.next = current.next;
+            return current.element;
+        }
+    }
+
+```
 
 
 
