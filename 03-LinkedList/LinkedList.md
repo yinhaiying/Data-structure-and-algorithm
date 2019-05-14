@@ -1,5 +1,5 @@
 ## 链表
-###数组的缺点以及链表
+### 数组的缺点以及链表
 - 数组的创建通常需要一段连续的内存空间(一整块的内存),并且大小是固定的。当当前数组不能满足容量需求时，需要进行扩容。(一半情况下是申请一个更大的数组，比如2倍，然后将数组中的元素复制过去)。
 - 在数组开头和中间位置插入元素的成本很高，需要进行大量元素的移动。
 
@@ -138,6 +138,72 @@ LinkedList.prototype.insert(position,element){
           return current.element;
       }
 ```
+#### indexOf(element)
+```
+       LinkedList.prototype.indexOf = function(element){
+           let index = 0;
+           let current = this.head;
+           while(current.element != element){
+             index +=1;
+             current = current.next;
+             if(index >= this.length){
+                 return -1;
+             }
+           }
+           return index;
+       }
+
+```
+#### update(position,element)
+```
+    LinkedList.prototype.update = function(position,element){
+        if(position < -1 || position >= this.length){
+            return false;
+        }
+        let index = 0;
+        let current = this.head;
+        while(index < position){
+            index += 1;
+            current = current.next;
+        }
+        current.element = element;
+        return true
+    }
+```
+
+#### removeAt(position):从链表的特定位置移除一项
+```
+
+    LinkedList.prototype.removeAt = function(position){
+        // 1. 边界判断
+        if(position < -1 || position >= this.length){
+            return false;
+        }
+        // 2. 找到链表的特定位置
+        let index = 0;
+        let current = this.head;
+        let previous = null;
+        // 如果删除的元素是第一个元素
+        if(position == 0){
+            this.head = current.next;
+        }else{
+            //如果删除的不是第一个元素
+            while(index < position){
+                index += 1;
+                previous = current;
+                current = current.next;
+            }
+            previous.next = current.next;
+        }
+        this.length -= 1;
+        return current.element;
+    }
+
+```
+#### remove(element):从链表中移除某个元素
+
+
+
 
 
 

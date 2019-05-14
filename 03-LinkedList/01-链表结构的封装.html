@@ -149,7 +149,26 @@
            this.length -= 1;
            return current.element;
        }
-
+       
+       // remove(element):从链表中移除某一项
+       LinkedList.prototype.remove = function(element){
+           let current = this.head;
+           let previous = null;
+           // 如果要移除的元素正好是第一项
+           if(current.element == element){
+               this.head = current.next;
+           }else{
+               while(current.element != element){
+                   if(!current.next){
+                       return -1;
+                   }
+                   previous = current;
+                   current = current.next;
+               }
+               previous.next = current.next;
+               return current.element;
+           }
+       }
 
 
 
@@ -170,7 +189,9 @@
 
 //   console.log('.....update.......')
 //   linkedList.update(2,'update');
-  linkedList.removeAt(0)
+//   linkedList.removeAt(0)
+  linkedList.remove('d')
+  console.log( linkedList.remove('f'))
   alert(linkedList.toString())
 
 </script>
