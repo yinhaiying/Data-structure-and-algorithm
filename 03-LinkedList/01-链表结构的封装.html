@@ -121,6 +121,33 @@
                current = current.next;
            }
            current.element = element;
+           return true
+       }
+
+       //   removeAt(position):从链表的特定位置移除一项
+       LinkedList.prototype.removeAt = function(position){
+           // 1. 边界判断
+           if(position < -1 || position >= this.length){
+               return false;
+           }
+           // 2. 找到链表的特定位置
+           let index = 0;
+           let current = this.head;
+           let previous = null;
+           // 如果删除的元素是第一个元素
+           if(position == 0){
+               this.head = current.next;
+           }else{
+                //如果删除的不是第一个元素
+                while(index < position){
+                    index += 1;
+                    previous = current;
+                    current = current.next;
+                }
+                previous.next = current.next;
+           }
+           this.length -= 1;
+           return current.element;
        }
 
 
@@ -134,14 +161,16 @@
   linkedList.append('a');
   linkedList.append('b');
   linkedList.append('c');
+  linkedList.append('d');
   alert(linkedList.toString())
 //   linkedList.insert(3,'d')
 //   alert(linkedList.toString())
 //   console.log(linkedList.get(2))
 //   console.log('元素f的索引是'+linkedList.indexOf('f'))
 
-  console.log('.....update.......')
-  linkedList.update(2,'update');
+//   console.log('.....update.......')
+//   linkedList.update(2,'update');
+  linkedList.removeAt(0)
   alert(linkedList.toString())
 
 </script>
