@@ -37,6 +37,58 @@
           }
           this.length += 1;
         }
+
+        //insert(element)
+        DoublyLinkedlist.prototype.insert = function(position,element){
+            if(position < 0 || position > this.length){
+                return false;
+            }
+            let newNode = new Node(element);
+            let prev = null;
+            let current = null;
+            if(this.length == 0){
+                this.head = newNode;
+                this.tail = newNode;
+            }else{
+                //如果是在链表头插入
+                if(position == 0){
+                    current = this.head;
+                    current.prev = newNode; // 原来的第一个节点变成了第二个节点，因此它具有prev发生了变化
+                    newNode.next = current;//新插入的节点的next指向原来的第一个节点
+                    this.head = newNode; // head指针应该指向第一个节点也就是新插入的节点。
+                }else if(position == this.length){
+                //如果是在链表尾部添加
+                    current = this.tail;
+                    newNode.prev = current;//新插入节点的Prev应该指向原来的最后一个
+                    current.next = newNode;//原来最后一个的next应该指向新插入的节点
+                    this.tail = newNode;//tail指针指向最后一个节点，也就是新插入的节点
+                }else{
+                    let index = 0;
+                    current = this.head;
+                    while(index < position){
+                        index += 1;
+                        prev = current;
+                        current = current.next;
+                    }
+                    current.prev = newNode;
+                    newNode.next = current;
+                    newNode.prev = prev;
+                    prev.next = newNode;
+                }
+            }
+
+            this.length += 1;
+            return true;
+        }
+        // 获取长度
+        DoublyLinkedlist.prototype.size = function(){
+            return this.length;
+        }
+
+
+
+
+
         // 重写toString方法
         DoublyLinkedlist.prototype.toString = function(){
           return this.backforwardString();
@@ -65,13 +117,19 @@
 
 
     let doublyLinkedlist = new DoublyLinkedlist();
-    doublyLinkedlist.append('a')
-    doublyLinkedlist.append('b')
-    doublyLinkedlist.append('c')
-    doublyLinkedlist.append('d')
-    
+    // doublyLinkedlist.append('a')
+    // doublyLinkedlist.append('b')
+    // doublyLinkedlist.append('c')
+    // doublyLinkedlist.append('d')
     alert(doublyLinkedlist.toString())
-    alert(doublyLinkedlist.forwardString())
+
+    // doublyLinkedlist.insert(0,'hello')
+    // alert(doublyLinkedlist.toString())
+    // let length = doublyLinkedlist.size();
+    // doublyLinkedlist.insert(length-1,'world')
+    // alert(doublyLinkedlist.toString())
+    doublyLinkedlist.insert(0,'f')
+    alert(doublyLinkedlist.toString())
 
 </script>
 </html>

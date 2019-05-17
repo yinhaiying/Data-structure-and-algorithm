@@ -328,10 +328,59 @@ function DoublyLinkedlist(){
     }
 ```
 
+#### insert(position,element)
+```
+    //insert(element)
+    DoublyLinkedlist.prototype.insert = function(position,element){
+        if(position < 0 || position > this.length){
+            return false;
+        }
+        let newNode = new Node(element);
+        let prev = null;
+        let current = null;
+        if(this.length == 0){
+            this.head = newNode;
+            this.tail = newNode;
+        }else{
+            //如果是在链表头插入
+            if(position == 0){
+                current = this.head;
+                newNode.next = current;
+                current.prev = newNode;
+                this.head = newNode;
+            }else if(position == this.length){
+            //如果是在链表尾部添加
+                current = this.tail;
+                newNode.prev = current;
+                current.next = newNode;
+                this.tail = newNode;
+            }else{
+                let index = 0;
+                current = this.head;
+                while(index < position){
+                    index += 1;
+                    prev = current;
+                    current = current.next;
+                }
+                newNode.next = current;
+                console.log(current)
+                current.prev = newNode;
+                newNode.prev = prev;
+                prev.next = newNode;
+            }
+        }
+
+        this.length += 1;
+        return true;
+    }
+```
 
 
 #### 双向链表总结：
 双向链表需要考虑的因素：
+由于双向链表的操作需要考虑的指针比较多，因此考虑时最好固定指针的顺序。
+我通常会从后往前修改指针。也就是说会将涉及到的所有的节点，从最后一个节点的
+指针开始修改。
 1. 新创建节点的prev和next
 2. 前一个节点的next
 3. 用于指向第一个节点的head和指向最后一个节点的tail
