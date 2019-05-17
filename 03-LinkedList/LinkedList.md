@@ -223,6 +223,13 @@ LinkedList.prototype.insert(position,element){
 
 ```
 
+### 单向链表总结：
+1. 只要是涉及到位置position定义index变量
+2. 只要是涉及到添加元素的，定义current = this.head
+3. 定义的属性通常会被使用到，如果没有使用到就需要考虑一下是否正确。
+4. 每一个节点的值，指针等一定会被使用到。
+
+
 ## 双向链表
 
 单向链表和双向链表的比较
@@ -247,6 +254,87 @@ LinkedList.prototype.insert(position,element){
 head:用于指向第一个节点
 tail:用于指向最后一个节点
 length:用于标记链表的长度
+```
+function DoublyLinkedlist(){
+    // 属性
+    this.head = null; //默认情况下(也就是没有节点的情况下)指向null
+    this.tail = null;
+    this.length = 0;
+    
+    function Node(ele){
+        this.ele = ele;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+```
+**常见操作的封装:**
+增
+1. append(element):向列表尾部添加一个新的项
+2. insert(position,element):向列表指定位置插入一个新的项
+查
+3. get(position):获取对应位置的元素
+4. indexOf(element):返回元素在链表中的索引，如果列表中没有该元素则返回1
+改
+5. update(position,element):修改元素某个位置的值
+删
+6. removeAt(position):从列表特定位置删除一项
+7. remove(element):从列表中删除一项
+
+8. isEmpty():如果链表不包含任何元素返回true
+9. size():返回链表包含的元素个数
+10. toString():由于链表使用了内部类，就需要重写继承自Javascript对象默认的toString方法，让其只输出元素的值。
+
+11. forwardString():返回正向遍历的节点字符串形式。
+12. backfordString():返回反向遍历的节点字符串形式。
+
+#### append(element)
+在链表尾部添加一个节点。如图双向链表-append(ele)所示：
+考虑问题的思路是：
+1. 创建一个新的节点
+2. 考虑新节点的prev和最后一个节点的next
+3. 修改this.tail的指向
+4. 由于双向链表链表存在一个tail直接表示最后一个节点，因此不需要再循环从头开始找第一个节点。
+
+如果链表为空.
+```
+    let newNode = new Node(ele);
+    if(this.length == 0){
+        this.head = newNode;
+        this.tail = newNode;
+    }
+```
+如果链表不为空。
+```
+    newNode.prev = this.tail; //新节点的prev
+    this.tail.next = newNode;//最后一个节点的next
+    this.tail = newNode;//修改this.tail的指向
+```
+完整的append(element)代码：
+```
+    DoublyLinkedlist.prototype.append = function(ele){
+        let newNode = new Node(ele);
+        //如果链表为空
+        if(this.length == 0){
+            this.head = newNode;
+            this.tail = newNode;
+        }else{
+            newNode.prev = this.tail;
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+        this.length += 1;
+    }
+```
+
+
+
+#### 双向链表总结：
+双向链表需要考虑的因素：
+1. 新创建节点的prev和next
+2. 前一个节点的next
+3. 用于指向第一个节点的head和指向最后一个节点的tail
 
 
 
@@ -257,10 +345,3 @@ length:用于标记链表的长度
 
 
 
-
-
-
-
-### 总结：
-1. 只要是涉及到位置position定义index变量
-2. 只要是涉及到添加元素的，定义current = this.head

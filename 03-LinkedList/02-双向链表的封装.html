@@ -16,12 +16,62 @@
         this.head = null; //默认情况下(也就是没有节点的情况下)指向null
         this.tail = null;
         this.length = 0;
-
+        
         function Node(ele){
-            this.ele = ele;
+            this.element = ele;
             this.prev = null;
             this.next = null;
         }
+
+        // append(ele)
+        DoublyLinkedlist.prototype.append = function(ele){
+          let newNode = new Node(ele);
+          //如果链表为空
+          if(this.length == 0){
+              this.head = newNode;
+              this.tail = newNode;
+          }else{
+              newNode.prev = this.tail;
+              this.tail.next = newNode;
+              this.tail = newNode;
+          }
+          this.length += 1;
+        }
+        // 重写toString方法
+        DoublyLinkedlist.prototype.toString = function(){
+          return this.backforwardString();
+        }
+        //向前遍历
+        DoublyLinkedlist.prototype.forwardString = function(){
+            let str = "";
+            let current = this.tail;
+            while(current){
+                str += "<" + current.element  ;
+                current = current.prev;
+            }
+            return str;
+        }
+        // 向后遍历
+        DoublyLinkedlist.prototype.backforwardString = function(){
+            let str = "";
+            let current = this.head;
+            while(current){
+                str += current.element + "->"
+                current = current.next;
+            }
+            return str;
+        }
     }
+
+
+    let doublyLinkedlist = new DoublyLinkedlist();
+    doublyLinkedlist.append('a')
+    doublyLinkedlist.append('b')
+    doublyLinkedlist.append('c')
+    doublyLinkedlist.append('d')
+    
+    alert(doublyLinkedlist.toString())
+    alert(doublyLinkedlist.forwardString())
+
 </script>
 </html>
