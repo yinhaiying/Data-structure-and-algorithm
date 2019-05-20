@@ -423,6 +423,81 @@ function DoublyLinkedlist(){
     }
 ```
 
+#### update(position,element)
+```
+ DoublyLinkedlist.prototype.update = function(position,element){
+    if(position < 0 || position >= this.length){
+        return false;
+    }
+    let index = 0;
+    let current = null;
+    // falg为true表示从前往后查找更高效
+    let flag = this.length / 2 > position;
+    if(flag){
+        current = this.head;
+        while(index < position){
+            index += 1;
+            current = current.next;
+        }
+    }else{
+        current = this.tail;
+        while(index < this.length - 1 - position){
+            index += 1;
+            current = current.tail;
+        }
+    }
+    current.element = element;
+    return true;
+}
+```
+#### removeAt(position)
+```
+DoublyLinkedlist.prototype.removeAt = function(position){
+    if(position < 0 || position >= this.length){
+        return null;
+    }
+    let current = null;
+    if(this.length == 1){
+        current = this.head;
+        this.head = null;
+        this.tail = null;
+    }else {
+        if(position == 0){
+            current = this.head;
+            current.next.prev = null;//第二个元素的prev指向head
+            this.head = current.next;
+            current.next = null;
+            }else if (position == this.length -1){
+                current = this.tail;
+                current.prev.next = null;
+                current.prev = null;
+                this.tail = current.prev;
+            }else{
+                let index = 0;
+                current = this.head;
+                while(index < position){
+                    index += 1;
+                    current = current.next;
+                }
+                current.next.prev = current.prev;// 被删除的元素的后一个元素的prev指向被删除元素的前一个元素
+                current.prev.next = current.next;//被删除元素的前一个元素的next指向被删除元素的后一个元素
+                current.next = null;
+                current.prev = null;
+            }
+    }
+    this.length -= 1;
+    return current.element;
+}
+```
+
+
+
+
+
+
+
+
+
 
 #### 双向链表总结：
 双向链表需要考虑的因素：
