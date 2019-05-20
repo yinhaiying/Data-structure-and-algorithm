@@ -80,6 +80,34 @@
             this.length += 1;
             return true;
         }
+        DoublyLinkedlist.prototype.get = function(position){
+           if(position < 0 || position >= this.length){
+               return null;
+           }
+           let flag = this.length/2 > position;  //从前往后查找更加简便
+           let current = null;
+           let index = 0;
+           if(flag){
+               //从前往后查找
+               console.log('前面查找')
+                current = this.head;
+                while(index < position){
+                    index += 1;
+                    current = current.next;
+                }
+                return current.element;
+           }else{
+               //从后往前查找
+               console.log('后面查找')
+                current = this.tail;
+                while(index < this.length - 1 - position){
+                    index += 1;
+                    current = current.prev;
+                }
+                return current.element;
+           }
+
+        }
         // 获取长度
         DoublyLinkedlist.prototype.size = function(){
             return this.length;
@@ -117,10 +145,10 @@
 
 
     let doublyLinkedlist = new DoublyLinkedlist();
-    // doublyLinkedlist.append('a')
-    // doublyLinkedlist.append('b')
-    // doublyLinkedlist.append('c')
-    // doublyLinkedlist.append('d')
+    doublyLinkedlist.append('a')
+    doublyLinkedlist.append('b')
+    doublyLinkedlist.append('c')
+    doublyLinkedlist.append('d')
     alert(doublyLinkedlist.toString())
 
     // doublyLinkedlist.insert(0,'hello')
@@ -130,6 +158,8 @@
     // alert(doublyLinkedlist.toString())
     doublyLinkedlist.insert(0,'f')
     alert(doublyLinkedlist.toString())
+    alert(doublyLinkedlist.get(0))
+    alert(doublyLinkedlist.get(3))
 
 </script>
 </html>
