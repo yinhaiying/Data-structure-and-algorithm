@@ -251,6 +251,22 @@
             }
             return str;
         }
+        //isEmpty
+        DoublyLinkedlist.isEmpty = function(){
+            return this.length == 0;
+        }
+        //size
+        DoublyLinkedlist.size = function(){
+            return this.length;
+        }
+        //getFirst():获取链表的第一个元素
+        DoublyLinkedlist.prototype.getFirst = function(){
+            return this.head.element;
+        }
+        //getTail():获取链表的最后一个元素
+        DoublyLinkedlist.prototype.getTail = function(){
+            return this.tail.element;
+        }
     }
 
 
