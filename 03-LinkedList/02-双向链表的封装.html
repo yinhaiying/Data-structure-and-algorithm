@@ -188,6 +188,39 @@
             this.length -= 1;
             return current.element;
         }
+        // remove(element)
+        DoublyLinkedlist.prototype.remove = function(element){
+            let current = this.head;
+            if(this.length == 1){
+                this.head = null;
+                this.tail = null;
+            }else{
+                //删除的是第一个元素
+                if(current.element == element){
+                  current.next.prev = null;
+                  this.head = current.next;
+                }else if(this.tail.element == element){
+                    //删除的是最后一个元素
+                    current = this.tail;
+                    this.tail.prev.next = null;
+                    this.tail = this.tail.prev;
+                }else{
+                    while(current){
+                        if(current.element !== element){
+                            current = current.next;
+                        }else{
+                            current.next.prev = current.prev;
+                            current.prev.next = current.next;
+                            this.length -= 1;
+                            return current.element;
+                        }
+                    }
+
+                }
+            }
+            this.length -= 1;
+            return current.element;
+        }
 
         // 获取长度
         DoublyLinkedlist.prototype.size = function(){
@@ -246,7 +279,8 @@
 //    if(doublyLinkedlist.update(0,'fixff')){
 //     console.log( doublyLinkedlist.indexOf('fixff'))
 //    }
-    doublyLinkedlist.removeAt(3)
+    // doublyLinkedlist.removeAt(3)
+    doublyLinkedlist.remove('d')
     alert(doublyLinkedlist.toString())
 
 </script>

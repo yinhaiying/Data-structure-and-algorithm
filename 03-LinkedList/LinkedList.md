@@ -489,7 +489,7 @@ DoublyLinkedlist.prototype.removeAt = function(position){
     return current.element;
 }
 ```
-
+#### remove(element)
 
 
 
