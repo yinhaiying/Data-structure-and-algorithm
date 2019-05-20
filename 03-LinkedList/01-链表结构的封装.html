@@ -97,18 +97,19 @@
           return current.element;
       }
        //indexOf(element):返回元素在链表中的索引，如果链表中没有该元素则返回-1
-       LinkedList.prototype.indexOf = function(element){
-           let index = 0;
-           let current = this.head;
-           while(current.element != element){
-             index +=1;
-             current = current.next;
-             if(index >= this.length){
-                 return -1;
-             }
-           }
-           return index;
-       }
+       Linkedlist.prototype.indexOf = function(element){
+            let current = this.head;
+            let index = 0;
+            //使用current作为循环结束的条件 current等于null的时候表示查找结束了，退出循环
+            while(current){
+                if(current.element == element){
+                    return index;
+                }
+                current = current.next;
+                index += 1;
+            }
+            return -1;
+        }
        //    update(position,element):修改元素某个位置的值
        LinkedList.prototype.update = function(position,element){
            if(position < -1 || position >= this.length){

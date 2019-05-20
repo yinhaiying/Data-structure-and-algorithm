@@ -80,6 +80,8 @@
             this.length += 1;
             return true;
         }
+
+        // get(position)
         DoublyLinkedlist.prototype.get = function(position){
            if(position < 0 || position >= this.length){
                return null;
@@ -108,6 +110,21 @@
            }
 
         }
+        // indexOf(element)返回指定元素的索引值
+        DoublyLinkedlist.prototype.indexOf = function(element){
+            let current = this.head;
+            let index = 0;
+            //使用current作为循环结束的条件 current等于null的时候表示查找结束了，退出循环
+            while(current){
+                if(current.element == element){
+                    return index;
+                }
+                current = current.next;
+                index += 1;
+            }
+            return -1;
+        }
+
         // 获取长度
         DoublyLinkedlist.prototype.size = function(){
             return this.length;
@@ -158,8 +175,14 @@
     // alert(doublyLinkedlist.toString())
     doublyLinkedlist.insert(0,'f')
     alert(doublyLinkedlist.toString())
-    alert(doublyLinkedlist.get(0))
-    alert(doublyLinkedlist.get(3))
+    // alert(doublyLinkedlist.get(0))
+    // alert(doublyLinkedlist.get(3))
+    alert(doublyLinkedlist.indexOf('f'))
+    alert(doublyLinkedlist.indexOf('a'))
+    alert(doublyLinkedlist.indexOf('b'))
+    alert(doublyLinkedlist.indexOf('c'))
+    alert(doublyLinkedlist.indexOf('d'))
+    alert(doublyLinkedlist.indexOf('nnn'))
 
 </script>
 </html>

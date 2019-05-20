@@ -140,18 +140,19 @@ LinkedList.prototype.insert(position,element){
 ```
 #### indexOf(element)
 ```
-       LinkedList.prototype.indexOf = function(element){
-           let index = 0;
-           let current = this.head;
-           while(current.element != element){
-             index +=1;
-             current = current.next;
-             if(index >= this.length){
-                 return -1;
-             }
-           }
-           return index;
-       }
+    Linkedlist.prototype.indexOf = function(element){
+        let current = this.head;
+        let index = 0;
+        //使用current作为循环结束的条件 current等于null的时候表示查找结束了，退出循环
+        while(current){
+            if(current.element == element){
+                return index;
+            }
+            current = current.next;
+            index += 1;
+        }
+        return -1;
+    }
 
 ```
 #### update(position,element)
@@ -372,6 +373,53 @@ function DoublyLinkedlist(){
 
         this.length += 1;
         return true;
+    }
+```
+#### get(position):
+获取指定位置的元素。由于双向链表既可以从前往后查找又可以从后往前查找。
+```
+ DoublyLinkedlist.prototype.get = function(position){
+    if(position < 0 || position >= this.length){
+        return null;
+    }
+    let flag = this.length/2 > position;  //从前往后查找更加简便
+    let current = null;
+    let index = 0;
+    if(flag){
+        //从前往后查找
+        console.log('前面查找')
+        current = this.head;
+        while(index < position){
+            index += 1;
+            current = current.next;
+        }
+        return current.element;
+    }else{
+        //从后往前查找
+        console.log('后面查找')
+        current = this.tail;
+        while(index < this.length - 1 - position){
+            index += 1;
+            current = current.prev;
+        }
+        return current.element;
+    }
+}
+```
+#### indexOf(element)
+```
+    DoublyLinkedlist.prototype.indexOf = function(element){
+        let current = this.head;
+        let index = 0;
+        //使用current作为循环结束的条件 current等于null的时候表示查找结束了，退出循环
+        while(current){
+            if(current.element == element){
+                return index;
+            }
+            current = current.next;
+            index += 1;
+        }
+        return -1;
     }
 ```
 
