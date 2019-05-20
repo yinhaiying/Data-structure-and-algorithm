@@ -125,6 +125,32 @@
             return -1;
         }
 
+        // update(position,element):修改元素某个位置的值
+        DoublyLinkedlist.prototype.update = function(position,element){
+            if(position < 0 || position >= this.length){
+                return false;
+            }
+            let index = 0;
+            let current = null;
+            // falg为true表示从前往后查找更高效
+            let flag = this.length / 2 > position;
+            if(flag){
+              current = this.head;
+              while(index < position){
+                  index += 1;
+                  current = current.next;
+              }
+            }else{
+              current = this.tail;
+              while(index < this.length - 1 - position){
+                  index += 1;
+                  current = current.tail;
+              }
+            }
+            current.element = element;
+            return true;
+        }
+
         // 获取长度
         DoublyLinkedlist.prototype.size = function(){
             return this.length;
@@ -177,12 +203,15 @@
     alert(doublyLinkedlist.toString())
     // alert(doublyLinkedlist.get(0))
     // alert(doublyLinkedlist.get(3))
-    alert(doublyLinkedlist.indexOf('f'))
-    alert(doublyLinkedlist.indexOf('a'))
-    alert(doublyLinkedlist.indexOf('b'))
-    alert(doublyLinkedlist.indexOf('c'))
-    alert(doublyLinkedlist.indexOf('d'))
-    alert(doublyLinkedlist.indexOf('nnn'))
+    // alert(doublyLinkedlist.indexOf('f'))
+    // alert(doublyLinkedlist.indexOf('a'))
+    // alert(doublyLinkedlist.indexOf('b'))
+    // alert(doublyLinkedlist.indexOf('c'))
+    // alert(doublyLinkedlist.indexOf('d'))
+    // alert(doublyLinkedlist.indexOf('nnn'))
+   if(doublyLinkedlist.update(0,'fixff')){
+    console.log( doublyLinkedlist.indexOf('fixff'))
+   }
 
 </script>
 </html>
