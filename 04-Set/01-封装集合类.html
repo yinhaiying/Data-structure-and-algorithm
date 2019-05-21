@@ -66,6 +66,17 @@
        }
        return this;
     }
+    // 交集
+    Set.prototype.intersection = function(otherSet){
+      let newSet = new Set();
+      let values = otherSet.values();
+      for(var i = 0;i < values.length;i++){
+        if(this.has(values[i])){
+          newSet.add(values[i])
+        }
+      }
+      return newSet;
+    }
   }
 
 let set1 = new Set();
@@ -88,10 +99,11 @@ console.log(set3.values())
 
 
 // 集合的合并
-let unionSet = set1.union(set2,set3)
-console.log(unionSet.values())
+// let unionSet = set1.union(set2,set3)
+// console.log(unionSet.values())
 
-
+let newSet = set1.intersection(set2)
+console.log(newSet.values())
 
 
 </script>

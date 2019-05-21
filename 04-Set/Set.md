@@ -105,3 +105,20 @@ Set.prototype.add = function(value){
        return this;
     }
 ```
+#### 集合求交集
+1. 创建一个新的集合
+2. 遍历集合1中的所有元素，判断元素是否在集合2中
+3. 如果该元素在集合2中，则添加到新集合中
+4. 返回新的集合
+```
+Set.prototype.intersection = function(otherSet){
+  let newSet = new Set();
+  let values = otherSet.values();
+  for(var i = 0;i < values.length;i++){
+    if(this.has(values[i])){
+      newSet.add(values[i])
+    }
+  }
+  return newSet;
+}
+```
