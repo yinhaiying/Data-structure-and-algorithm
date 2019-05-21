@@ -12,7 +12,7 @@
 ### 集合类的封装
 同之前一样，类的封装设计到类的属性和类的方法。
 
-集合属性：
+**集合属性：**
 集合只是用来保存元素的，不涉及到其他指针之类的，因此不存在内部类。只需要使用一个
 容器来保存元素即可。我们可以使用数组或者对象来作为这个容器。这里建议使用对象。
 因为集合需要确保元素不能重复，而对象的key值是不重复的。因此通过将集合的元素设置成
@@ -27,3 +27,35 @@
     
   }
 ```
+
+**集合操作：**
+1. add(value):向集合中添加一个新的项
+2. remove(value):从集合中删除一个项
+3. has(value):判断集合中是否有某个值
+4. clear():移除集合中的所有项
+5. size():返回集合中元素的数量
+6. values():返回一个包含集合中所有值的数组
+
+#### has(value)
+由于集合的容器是一个对象。集合的元素都保存在对象key中。
+因此只需要判断对象中是否存在该key就可以判断是否存在该元素。
+通过hasOwnProperty方法来判断对象是否有该属性。
+```
+// 判断集合中是否有某属性
+Set.prototype.has = function(value){
+    return this.items.hasOwnProperty(value)
+}
+```
+
+#### add(value)
+```
+Set.prototype.add = function(value){
+    //判断集合中是否包含有该元素
+    if(this.has(value)){
+        return false;
+    }
+    this.items[value] = value; 
+    return true;
+}
+```
+#### remvoe(value)

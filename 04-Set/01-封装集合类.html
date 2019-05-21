@@ -19,9 +19,52 @@
     this.items = {}
 
     //类的操作
-    
+
+    // add(value)
+    Set.prototype.add = function(value){
+      //判断集合中是否包含有该元素
+      if(this.has(value)){
+          return false;
+      }
+       this.items[value] = value; 
+       return true;
+    }
+    // remove(value)
+    Set.prototype.remove = function(value){
+        if(!this.has(value)){
+            return false;
+        }
+        delete this.items[value];
+        return true;
+    }
+    //clear()
+    Set.prototype.clear = function(){
+      this.items = {};
+    }
+    //size()
+    Set.prototype.size = function(){
+      return Object.keys(this.items).length;
+    }
+    //values()
+    Set.prototype.values = function(){
+      return Object.keys(this.items)
+    }
+    // 判断集合中是否有某属性
+    Set.prototype.has = function(value){
+       return this.items.hasOwnProperty(value)
+    }
   }
 
+let set = new Set();
+set.add('a');
+set.add('b');
+console.log(set.values())
+console.log(set.has('a'))
+console.log(set.add('a'))
+console.log(set.values())
+console.log(set.size())
+console.log(set.remove('a'))
+console.log(set.values())
 
 </script>
 </html>
