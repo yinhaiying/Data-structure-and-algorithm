@@ -53,18 +53,46 @@
     Set.prototype.has = function(value){
        return this.items.hasOwnProperty(value)
     }
+
+    //并集
+    Set.prototype.union = function(...args){
+       // this本来就是一个集合
+       //求this代表的集合和其他集合的并集
+       for(let i = 0;i < args.length;i++){
+         let values = args[i].values();
+         for(let j = 0;j < values.length;j++){
+          this.add(values[j])
+         }
+       }
+       return this;
+    }
   }
 
-let set = new Set();
-set.add('a');
-set.add('b');
-console.log(set.values())
-console.log(set.has('a'))
-console.log(set.add('a'))
-console.log(set.values())
-console.log(set.size())
-console.log(set.remove('a'))
-console.log(set.values())
+let set1 = new Set();
+for(let i = 0;i < 7;i++){
+  set1.add(i)
+}
+console.log(set1.values())
+
+let set2 = new Set();
+for(let i = 3;i < 10;i++){
+  set2.add(i)
+}
+console.log(set2.values())
+
+let set3 = new Set();
+for(let i = 7;i < 13;i++){
+  set3.add(i)
+}
+console.log(set3.values())
+
+
+// 集合的合并
+let unionSet = set1.union(set2,set3)
+console.log(unionSet.values())
+
+
+
 
 </script>
 </html>

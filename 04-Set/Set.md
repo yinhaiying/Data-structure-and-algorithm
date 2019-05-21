@@ -58,4 +58,50 @@ Set.prototype.add = function(value){
     return true;
 }
 ```
-#### remvoe(value)
+#### remove(value)
+```
+  Set.prototype.remove = function(value){
+      if(!this.has(value)){
+          return false;
+      }
+      delete this.items[value];
+      return true;
+  }
+
+```
+#### 其他操作
+```
+  //clear()
+  Set.prototype.clear = function(){
+    this.items = {};
+  }
+  //size()
+  Set.prototype.size = function(){
+    return Object.keys(this.items).length;
+  }
+  //values()
+  Set.prototype.values = function(){
+    return Object.keys(this.items)
+  }
+  // 判断集合中是否有某属性
+  Set.prototype.has = function(value){
+      return this.items.hasOwnProperty(value)
+  }
+```
+
+### 多个集合之间的操作
+#### 集合求并集
+1. 遍历所有的集合，将所有集合的元素添加到其中一个集合中，最后返回这个集合。
+```
+    Set.prototype.union = function(...args){
+       // this本来就是一个集合
+       //求this代表的集合和其他集合的并集
+       for(let i = 0;i < args.length;i++){
+         let values = args[i].values();
+         for(let j = 0;j < values.length;j++){
+          this.add(values[j])
+         }
+       }
+       return this;
+    }
+```
