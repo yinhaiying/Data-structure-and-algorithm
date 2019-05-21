@@ -77,6 +77,35 @@
       }
       return newSet;
     }
+    //差集
+    Set.prototype.differnence = function(otherSet){
+      let newSet = new Set();
+      let values = this.values();
+      //集合2中不在集合1中的元素添加到新集合中
+      for(let j = 0;j < values.length;j++){
+        if(!otherSet.has(values[j])){
+          newSet.add(values[j])
+        }
+      }
+      return newSet;
+    }
+    // 子集的判断
+    Set.prototype.child = function(otherSet){
+      let values = this.values();
+      if(values.length > otherSet.values().length){
+        return false;
+      }
+      let flag = true;
+      for(let i = 0;i < values.length;i++){
+        if(!otherSet.has(values[i])){
+          console.log('执行了几次')
+          flag = false;
+        }
+      }
+      return flag;
+    }
+
+
   }
 
 let set1 = new Set();
@@ -86,7 +115,7 @@ for(let i = 0;i < 7;i++){
 console.log(set1.values())
 
 let set2 = new Set();
-for(let i = 3;i < 10;i++){
+for(let i = 0;i < 3;i++){
   set2.add(i)
 }
 console.log(set2.values())
@@ -102,9 +131,18 @@ console.log(set3.values())
 // let unionSet = set1.union(set2,set3)
 // console.log(unionSet.values())
 
-let newSet = set1.intersection(set2)
-console.log(newSet.values())
 
+//集合的交集
+// let newSet = set1.intersection(set2)
+// console.log(newSet.values())
+
+//集合的差集
+// let newSet = set1.differnence(set2)
+// console.log(newSet.values())
+
+//子集的判断
+let isChild = set2.child(set1)
+console.log(isChild )
 
 </script>
 </html>

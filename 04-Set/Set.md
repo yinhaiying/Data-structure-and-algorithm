@@ -122,3 +122,42 @@ Set.prototype.intersection = function(otherSet){
   return newSet;
 }
 ```
+
+#### 集合求差集
+```
+Set.prototype.differnence = function(otherSet){
+  let newSet = new Set();
+  let values = this.values();
+  //集合2中不在集合1中的元素添加到新集合中
+  for(let j = 0;j < values.length;j++){
+    if(!otherSet.has(values[j])){
+      newSet.add(values[j])
+    }
+  }
+  return newSet;
+}
+```
+
+#### 集合子集的判断
+判断一个集合是否是另外一个的子集
+1. 判断集合1的长度是否大于集合2的长度，如果大于肯定不是。
+2. 集合1的长度不大于集合2的情况下：
+  - 判断集合1中的元素是否都在集合2中。如果全都存在那么是。只要有一个不存在那么就不是。
+  
+```
+    // 子集的判断
+    Set.prototype.child = function(otherSet){
+      let values = this.values();
+      if(values.length > otherSet.values().length){
+        return false;
+      }
+      let flag = true;
+      for(let i = 0;i < values.length;i++){
+        if(!otherSet.has(values[i])){
+          console.log('执行了几次')
+          flag = false;
+        }
+      }
+      return flag;
+    }
+```
