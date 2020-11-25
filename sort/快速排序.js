@@ -197,8 +197,18 @@ const quickSort4 = (arr) => {
     [arr[start], arr[smallEnd]] = [arr[smallEnd], arr[start]];
     return smallEnd;
   };
-console.log("...................")
-console.log(quickSort4(arr));
-console.log(quickSort4(arr1));
-console.log(quickSort4(arr2));
-console.log(quickSort4(arr3));
+// console.log("...................")
+// console.log(quickSort4(arr));
+// console.log(quickSort4(arr1));
+// console.log(quickSort4(arr2));
+// console.log(quickSort4(arr3));
+
+
+console.log(quickSort4([1,2,9,4,10,20,12]))
+// [1, 2, 4, 9, 10, 12, 20]
+console.log(quickSort4([11,2,39,24,1,2,9]))
+//  [1, 2, 2, 9, 11, 24, 39]
+console.log(quickSort4([]))
+// []
+console.log(quickSort4([1,1,1,1,1]))
+// [1, 1, 1, 1, 1]
