@@ -88,6 +88,7 @@ let inPlaceQuickSort = (arr) => {
 
 let arr1 = [40, 20, 10, 30, 50,60,70];
 let arr2 = [40, 20, 20, 30, 20,30,50];
+let arr3 = [40, 2,3, 6, 0,55,33,66,12];
 // 获取到pivot最终的位置，也就是获取到基准位置，在这个基准位置的左侧都小于它，右侧都应该大于它
 const handlePivot = (arr,start,end) => {
     if(end - start === 0){
@@ -117,6 +118,8 @@ const handlePivot = (arr,start,end) => {
 // console.log(handlePivot(arr1,0,arr.length));
 // console.log(handlePivot(arr2,0,arr.length));
 let arr = [40, 70, 60, 20, 10, 30, 50];
+
+// 就地排序
 const quickSort3 = (arr) => {
   const _quickSort = (arr,start,end) => {
     if(end - start <= 1){
@@ -129,10 +132,73 @@ const quickSort3 = (arr) => {
   }
   return _quickSort(arr,0,arr.length)
 }
-console.log(quickSort3(arr));
+// console.log(quickSort3(arr));
+// console.log(quickSort3(arr1));
+// console.log(quickSort3(arr2));
+// console.log(quickSort3(arr3));
 
 
 // let arr4 = [20,30,10,40];
 // console.log(handlePivot(arr,0,7));
 
 
+// 随机化快排：优化平均效率
+// 快排的时间复杂度：先计算有多少层  n个数,会有log2n层，每一层的操作是n个数有n次操作。因此
+// 最终的操作就是n*log2n。时间复杂度就是n*log2n。
+
+//如果数组是有序的，比如从小到大排列，每次的第一个数都是最小值。
+// 也就是说我们每一次都是将数组分成它本身和其他n-1个数。进行n次操作
+// 那么最终的操作会变成n + (n-1) + (n-2) + ... + 1约为n * n。最终的时间复杂度就变成O(n2)。
+
+
+// 快排之所以能够快速排序，就是因为很可能找的基准点就是中间值，这样的话，左边的不用操作，右边的也不用操作，
+// 这样的话能够极大地减小操作次数。现在每次选的都是最值，这样的话直接就导致每次都要进行n次操作，无法二分。
+
+// 因此，我们需要避免每次都选中最小值。也就是说我们不要每次都选同一个位置的值，比如开始位置，中间位置，
+// 而是随机选值。毕竟此次都选中最值得几率还是比较小的。
+
+// 只需要每次将arr[random]与arr[0]调换位置即可。
+const quickSort4 = (arr) => {
+  const _quickSort = (arr, start, end) => {
+    if (end - start <= 1) {
+      return arr;
+    }
+    let pivotIndex = handlePivot1(arr, start, end);
+    _quickSort(arr, start, pivotIndex);
+    _quickSort(arr, pivotIndex + 1, end);
+    return arr;
+  };
+
+  return _quickSort(arr, 0, arr.length);
+};
+
+  const handlePivot1 = (arr, start, end) => {
+    if (end - start === 0) {
+      return -1;
+    } else if (end - start === 1) {
+      return start;
+    }
+    let randomIndex = Math.floor(Math.random() * (end-start) + start);
+    [arr[randomIndex],arr[start]] = [arr[start],arr[randomIndex]];
+    let pivot = arr[start];
+    let i = start + 1;
+    let bigStart = end - 1;
+    let smallEnd = start;
+    while (bigStart - smallEnd >= 1) {
+      if (arr[i] > pivot) {
+        [arr[i], arr[bigStart]] = [arr[bigStart], arr[i]];
+        bigStart -= 1;
+      }
+      if (arr[i] <= pivot) {
+        i += 1;
+        smallEnd += 1;
+      }
+    }
+    [arr[start], arr[smallEnd]] = [arr[smallEnd], arr[start]];
+    return smallEnd;
+  };
+console.log("...................")
+console.log(quickSort4(arr));
+console.log(quickSort4(arr1));
+console.log(quickSort4(arr2));
+console.log(quickSort4(arr3));
