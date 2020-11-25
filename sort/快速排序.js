@@ -85,29 +85,54 @@ let inPlaceQuickSort = (arr) => {
 
 // 不使用splice进行移动，而是通过替换
 
-let arr = [40, 70,60,20, 10, 30, 50];
+
 let arr1 = [40, 20, 10, 30, 50,60,70];
 let arr2 = [40, 20, 20, 30, 20,30,50];
-// 获取到pivot最终的位置
-const handlePivot = (arr) => {
-    let pivot = arr[0];
-    let i = 1;
-    let j = 1;
-    let len = arr.length;
-    while( (i + j) < (len-1) ){
-      while(arr[i] > pivot && (i+j) < len-1){
-        [arr[i],arr[len-j]] = [arr[len-j],arr[i]];
-        j += 1;
-      }
-      while(arr[i] <= pivot && i < len){
-          i++;
-      }
+// 获取到pivot最终的位置，也就是获取到基准位置，在这个基准位置的左侧都小于它，右侧都应该大于它
+const handlePivot = (arr,start,end) => {
+    if(end - start === 0){
+        return -1;
+    }else if(end - start === 1){
+        return start;
     }
-    return --i;
+    let pivot = arr[start];
+    let i = start + 1;
+    let bigStart = end - 1;
+    let smallEnd = start;
+    while( bigStart - smallEnd >= 1){
+        if(arr[i] > pivot){
+            [arr[i],arr[bigStart]] = [arr[bigStart],arr[i]];
+            bigStart -= 1;
+        }
+        if(arr[i] <= pivot){
+            i+=1;
+            smallEnd += 1;
+        }
+    }
+    [arr[start],arr[smallEnd]] = [arr[smallEnd],arr[start]];
+    return smallEnd;
 }
 
-console.log(handlePivot(arr));
-console.log(handlePivot(arr1));
-console.log(handlePivot(arr2));
+// console.log(handlePivot(arr,0,arr.length));
+// console.log(handlePivot(arr1,0,arr.length));
+// console.log(handlePivot(arr2,0,arr.length));
+let arr = [40, 70, 60, 20, 10, 30, 50];
+const quickSort3 = (arr) => {
+  const _quickSort = (arr,start,end) => {
+    if(end - start <= 1){
+        return arr;
+    }
+    let pivotIndex = handlePivot(arr,start,end);
+    _quickSort(arr, start, pivotIndex);
+    _quickSort(arr, pivotIndex+1, end);
+    return arr;
+  }
+  return _quickSort(arr,0,arr.length)
+}
+console.log(quickSort3(arr));
+
+
+// let arr4 = [20,30,10,40];
+// console.log(handlePivot(arr,0,7));
 
 
